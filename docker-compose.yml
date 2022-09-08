@@ -1,0 +1,19 @@
+version: "3"
+
+networks:
+  carteira-acoes-network:
+    driver: bridge
+
+services:
+  web:
+    image: node:alpine
+    container_name: carteira-acoes-frontend
+    working_dir: /usr/app
+    command: "npm run dev --host"
+    networks:
+      - carteira-acoes-network
+    ports:
+      - "9001:5173"
+    volumes:
+      - "./frontend:/usr/app"
+

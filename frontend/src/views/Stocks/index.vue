@@ -1,8 +1,14 @@
 <template>
-  <main class="container mx-auto py-4 px-8">
+  <main class="container mx-auto py-4 px-4">
     <div class="py-4">
-      <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-        <h2 class="text-xl font-semibold leading-tight">Ações</h2>
+      <div class="flex gap-4 justify-between content-center">
+        <h2 class="text-xl font-semibold leading-tight">Produtos</h2>
+        <button
+          class="bg-blue-600 rounded-full p-3 text-white text-sm hover:bg-blue-500"
+          @click="to"
+        >
+          Adicionar Produto
+        </button>
       </div>
     </div>
 
@@ -49,6 +55,9 @@
 
   const currentRoute: ComputedRef<string> = computed<string>(() => route.name)
 
+  function to() {
+    console.log('aqui')
+  }
 </script>
 
 <style scoped lang="postcss">

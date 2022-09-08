@@ -1,40 +1,53 @@
 <template>
-  <div class="flex flex-col p-3 gap-2">
-    <div class="rounded-lg border border-gray-200 p-2">
-      <div class="grid grid-cols-5 gap-2">
-        <div class="flex flex-col gap-2 p-2 border-l-2">
-          <h6 class="text-[10px] font-medium text-gray-400 uppercase">Quantidade Ativos</h6>
-          <h4 class="text-[14px] font-medium text-blue-600">15</h4>
-        </div>
-        <div class="flex flex-col gap-2 p-2 border-l-2">
-          <h6 class="text-[10px] font-medium text-gray-400 uppercase">Saldo Bruto</h6>
-          <h4 class="text-[14px] font-medium text-blue-600">R$ 1.000,00</h4>
-        </div>
-        <div class="flex flex-col gap-2 p-2 border-l-2">
-          <h6 class="text-[10px] font-medium text-gray-400 uppercase">Valor Investido</h6>
-          <h4 class="text-[14px] font-medium text-blue-600">R$ 1.000,00</h4>
-        </div>
-        <div class="flex flex-col gap-2 p-2 border-l-2">
-          <h6 class="text-[10px] font-medium text-gray-400 uppercase">Resultado</h6>
-          <h4 class="text-[14px] font-medium text-blue-600">R$ 1.000,00</h4>
-        </div>
-        <div class="flex flex-col gap-2 p-2 border-l-2">
-          <h6 class="text-[10px] font-medium text-gray-400 uppercase">Resultado %</h6>
-          <h4 class="text-[14px] font-medium text-blue-600">20%</h4>
-        </div>
+  <main class="container mx-auto py-4 px-4">
+    <div class="py-4">
+      <div class="flex gap-4 justify-between content-center">
+        <h2 class="text-xl font-semibold leading-tight">Renda Variável</h2>
+        <button class="bg-blue-600 rounded-full p-3 text-white text-sm hover:bg-blue-500">
+          Adicionar Produto
+        </button>
       </div>
     </div>
+    <div class="flex">
+      <Card>
+        <div class="rounded-lg border border-gray-200 p-2">
+          <div class="grid grid-cols-5 gap-2">
+            <div class="flex flex-col gap-2 p-2 border-l-2">
+              <h6 class="text-[10px] font-medium text-gray-400 uppercase">Quantidade Ativos</h6>
+              <h4 class="text-[14px] font-medium text-blue-600">15</h4>
+            </div>
+            <div class="flex flex-col gap-2 p-2 border-l-2">
+              <h6 class="text-[10px] font-medium text-gray-400 uppercase">Saldo Bruto</h6>
+              <h4 class="text-[14px] font-medium text-blue-600">R$ 1.000,00</h4>
+            </div>
+            <div class="flex flex-col gap-2 p-2 border-l-2">
+              <h6 class="text-[10px] font-medium text-gray-400 uppercase">Valor Investido</h6>
+              <h4 class="text-[14px] font-medium text-blue-600">R$ 1.000,00</h4>
+            </div>
+            <div class="flex flex-col gap-2 p-2 border-l-2">
+              <h6 class="text-[10px] font-medium text-gray-400 uppercase">Resultado</h6>
+              <h4 class="text-[14px] font-medium text-blue-600">R$ 1.000,00</h4>
+            </div>
+            <div class="flex flex-col gap-2 p-2 border-l-2">
+              <h6 class="text-[10px] font-medium text-gray-400 uppercase">Resultado %</h6>
+              <h4 class="text-[14px] font-medium text-blue-600">20%</h4>
+            </div>
+          </div>
+        </div>
 
-    <Table :items="items" :headers="headers">
-      <template #item-acquisition_cost="{ item }">
-        {{ $filters.money(item.acquisition_cost) }}
-      </template>
+        <Table :items="items" :headers="headers">
+          <template #item-acquisition_cost="{ item }">
+            {{ $filters.money(item.acquisition_cost) }}
+          </template>
 
-      <template #item-current_price="{ item }">
-        {{ $filters.money(item.current_price) }}
-      </template>
-    </Table>
-  </div>
+          <template #item-current_price="{ item }">
+            {{ $filters.money(item.current_price) }}
+          </template>
+        </Table>
+      </Card>
+    </div>
+  </main>
+  <!--  -->
 </template>
 
 <script setup lang="ts">

@@ -61,6 +61,6 @@
 
 <style scoped lang="postcss">
   .active {
-    @apply bg-blue-500 text-white hover:bg-blue-600;
+    @apply bg-blue-500 text-white hover:bg-blue-600 hover:text-white;
   }
 </style>
