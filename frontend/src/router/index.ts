@@ -9,17 +9,17 @@ export const routes = [
     component: Home,
   },
   {
-    path: '/fixed-income',
+    path: '/product/fixed-income',
     name: 'Renda Fixa',
     component: () => import('../views/Stocks/FixedIncome.vue'),
   },
   {
-    path: '/variable-income',
+    path: '/product/variable-income',
     name: 'Renda Variável',
     component: () => import('../views/Stocks/VariableIncome.vue'),
   },
   {
-    path: '/investiment-funds',
+    path: '/product/investiment-funds',
     name: 'Fundos de Investimento',
     component: () => import('../views/Stocks/InvestimentFunds.vue'),
   },
