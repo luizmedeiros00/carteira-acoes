@@ -9,12 +9,15 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        stocks: {
-          fii: '#38bdf8',
-          brasil: '#22c55e',
-          eua: '#ef4444',
-          fixa: '#fde047'
-        }
+          main: '#0284c7',
+          primary: {
+            500: '#0ea5e9',
+            600: '#0284c7'
+          },
+          success: {
+            500: '#22c55e',
+            600: '#16a34a'
+          }
       }
     },
     screens: {
@@ -963,5 +966,7 @@ module.exports = {
     'active',
     'disabled',
   ],
-  plugins: [],
+  plugins: [
+ 
+  ],
 }

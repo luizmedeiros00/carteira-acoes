@@ -16,7 +16,7 @@ export const routes = [
   {
     path: '/product/variable-income',
     name: 'Renda Variável',
-    component: () => import('../views/Stocks/VariableIncome.vue'),
+    component: () => import('../views/VariableIncome/index.vue'),
   },
   {
     path: '/product/investiment-funds',

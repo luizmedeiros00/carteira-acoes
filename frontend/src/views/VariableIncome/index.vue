@@ -46,18 +46,18 @@
     </div>
   </main>
   <BaseModal :active="activeModal" size="md" @close="toggleModal(false)">
-  
-    teste
+    <component :is="VariableIncomeFormModal" @submit-form="submitFormModal" />
   </BaseModal>
 </template>
 
 <script setup lang="ts">
+  import { ref, defineAsyncComponent } from 'vue'
   import Card from '@/components/Card/index.vue'
   import Table from '@/components/Table/index.vue'
   import Button from '@/components/Button/index.vue'
   import BaseModal from '@/components/BaseModal/index.vue'
-  import { ref } from 'vue'
-
+  
+  const VariableIncomeFormModal = defineAsyncComponent(() => import('./VariableIncomeFormModal.vue'))
   let activeModal = ref<boolean>(false)
   const headers = [
     { text: 'Categoria', value: 'category.name' },
@@ -99,6 +99,10 @@
 
   function toggleModal(active: boolean) {
     activeModal.value = active
+  }
+
+  function submitFormModal() {
+    console.log('aqui 2')
   }
 </script>
 

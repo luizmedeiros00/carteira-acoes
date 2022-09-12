@@ -48,7 +48,7 @@
       appear
     >
       <div
-        v-show="active"
+        v-show="isOpen"
         class="overflow-hidden transition-all duration-200 max-h-0"
       >
         <ul
