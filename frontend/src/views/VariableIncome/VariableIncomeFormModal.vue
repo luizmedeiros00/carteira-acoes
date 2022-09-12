@@ -1,56 +1,62 @@
 <template>
-  <div class="flex p-4 border-b">
-    <h1>Cadastro Renda Variável</h1>
-  </div>
-  <div class="p-4 gap-2">
-    <FormKit
-      type="form"
-      id="variableIncomeForm"
-      submit-label="Salvar"
-      @submit="submit"
-      :actions="false"
-      :config="{ validationVisibility: 'submit' }"
-      :incomplete-message="false"
-    >
-      <div class="grid grid-cols-2 gap-2">
-        <FormKit
-          id="date"
-          type="date"
-          name="purchase_at"
-          label="Data da compra"
-          validation="required"
-        />
-        <FormKit type="text" name="code" label="Código do ativo" validation="required" />
-        <FormKit type="number" name="quantity" label="Quantidade" validation="required|min:1" />
-        <FormKit type="text" name="acquisition_cost" label="Valor" validation="required" />
-        <FormKit type="submit" label="Salvar" />
-      </div>
-
-    </FormKit>
-  </div>
-  <!-- <div class="flex gap-2 p-4 border-t">
-    <Button pill @click="submit">Cadastrar</Button>
-    <Button pill variant="secondary" @click="submit">Fechar</Button>
-  </div> -->
+  <BaseModal size="md" :active="activeModal" @close="closeModal" persistent>
+    <div class="flex justify-between p-4 border-b">
+      <h1>Cadastro Renda Variável</h1>
+      <button class="text-xl text-gray-600 focus:outline-none" @click="closeModal">&times;</button>
+    </div>
+    <div class="p-4 gap-2">
+      <FormKit
+        type="form"
+        id="variableIncomeForm"
+        submit-label="Salvar"
+        @submit="submit"
+        :actions="false"
+        :config="{ validationVisibility: 'submit' }"
+        :incomplete-message="false"
+      >
+        <div class="grid grid-cols-2 gap-2">
+          <FormKit
+            id="date"
+            type="date"
+            name="purchase_at"
+            label="Data da compra"
+            validation="required"
+          />
+          <FormKit type="text" name="code" label="Código do ativo" validation="required" />
+          <FormKit type="number" name="quantity" label="Quantidade" validation="required|min:1" />
+          <FormKit type="text" name="acquisition_cost" label="Valor" validation="required" />
+        </div>
+        <div class="mt-5">
+          <Button pill type="submit" :loading="loading">Salvar</Button>
+        </div>
+      </FormKit>
+    </div>
+  </BaseModal>
 </template>
 
 <script setup lang="ts">
-  import { onActivated, ref } from 'vue'
+  import { defineAsyncComponent, ref } from 'vue'
   import { reset } from '@formkit/core'
   import { getNode } from '@formkit/core'
-  const emit = defineEmits(['submit-form'])
+  import Button from '@/components/Button/index.vue'
+  const emit = defineEmits(['submit-form', 'close-modal'])
+  const BaseModal = defineAsyncComponent(() => import('@/components/BaseModal/index.vue'))
 
-  function submit(value: object) {
-    console.log(value)
+  const { activeModal = false } = defineProps<{ activeModal?: boolean }>()
+  let loading = ref<boolean>(false)
+
+  function submit(value: any) {
+    loading.value = true
+    // emit('submit-form', value)
   }
 
-  onActivated(() => {
-    console.log('aqui')
+  function closeModal() {
+    loading.value = false
     const form = getNode('variableIncomeForm')
     form?.clearErrors()
-    console.log(form)
     reset('variableIncomeForm')
-  })
+    emit('close-modal')
+  }
 </script>
 
 <style scoped>
