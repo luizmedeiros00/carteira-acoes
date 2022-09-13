@@ -1,0 +1,48 @@
+{
+  "variable-income": [
+    {
+      "id": 1,
+      "name": "FII BTG PACTUA",
+      "code": "BRCR11",
+      "acquisition_cost": "71.82",
+      "current_price": "68.10",
+      "quantity": 10,
+      "category": {
+        "name": "Fundos imobiliários"
+      },
+      "subcategory": {
+        "name": "Fundos de fundos"
+      }
+    },
+    {
+      "id": 2,
+      "name": "Vinci Instrumentos Financeiros Fundo DE Investimento Imobiliario",
+      "code": "VIFI11",
+      "acquisition_cost": "8.33",
+      "current_price": "7.53",
+      "quantity": 8,
+      "category": {
+        "name": "Fundos imobiliários"
+      },
+      "subcategory": {
+        "name": "Fundos de fundos"
+      }
+    },
+    {
+      "id": 3,
+      "name": "XP Properties FII",
+      "code": "XPPR11",
+      "acquisition_cost": "47.68",
+      "current_price": "48.83",
+      "quantity": 2,
+      "category": {
+        "name": "Fundos imobiliários"
+      },
+      "subcategory": {
+        "name": "Fundos de tijolos"
+      }
+    }
+  ],
+  "comments": [{ "id": 1, "body": "some comment", "postId": 1 }],
+  "profile": { "name": "typicode" }
+}

@@ -53,7 +53,10 @@
           </tr>
         </tbody>
       </table>
-      <div v-if="state.tableItems.length === 0" class="flex flex-row justify-center w-full mt-1">
+      <div
+        v-if="state.tableItems.length === 0 && !loading"
+        class="flex flex-row justify-center w-full mt-1"
+      >
         <p class="text-sm text-gray-500">Nenhum dado encontrado</p>
       </div>
       <LoadingBar v-if="loading" />
@@ -63,7 +66,7 @@
 
 <script setup lang="ts">
   import _ from 'lodash'
-  import { reactive } from 'vue'
+  import { reactive, watch } from 'vue'
   import LoadingBar from '../LoadingBar/index.vue'
   interface Header {
     text: string
@@ -80,12 +83,20 @@
     ascending: boolean
     tableItems: Array<any>
   }
-  const { headers, items, loading } = defineProps<Props>()
+  let props= defineProps<Props>()
   const state: State = reactive({
     sortColumn: '',
     ascending: false,
-    tableItems: _.cloneDeep(items),
+    tableItems: [],
   })
+
+  watch(
+    () => _.cloneDeep(props.items),
+    (newValue, oldValue) => {
+     state.tableItems = newValue
+    },
+    { deep: true }
+  )
 
   function headerRender(item: object, path: string) {
     return _.get(item, path, '')

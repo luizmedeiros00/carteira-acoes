@@ -36,12 +36,5 @@
 
 </script>
 <style scoped>
-  .modal-outer-enter-active,
-  .modal-outer-leave-active {
-    transition: opacity 0.3s cubic-bezier(0.52, 0.02, 0.19, 1.02);
-  }
-  .modal-outer-enter-from,
-  .modal-outer-leave-to {
-    opacity: 0;
-  }
+
 </style>

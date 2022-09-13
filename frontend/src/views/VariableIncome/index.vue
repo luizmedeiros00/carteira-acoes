@@ -10,30 +10,13 @@
       <Card>
         <div class="rounded-lg border border-gray-200 p-2">
           <div class="grid grid-cols-5 gap-2">
-            <div class="flex flex-col gap-2 p-2 border-l-2">
-              <h6 class="text-[10px] font-medium text-gray-400 uppercase">Quantidade Ativos</h6>
-              <h4 class="text-[14px] font-medium text-blue-600">15</h4>
-            </div>
-            <div class="flex flex-col gap-2 p-2 border-l-2">
-              <h6 class="text-[10px] font-medium text-gray-400 uppercase">Saldo Bruto</h6>
-              <h4 class="text-[14px] font-medium text-blue-600">R$ 1.000,00</h4>
-            </div>
-            <div class="flex flex-col gap-2 p-2 border-l-2">
-              <h6 class="text-[10px] font-medium text-gray-400 uppercase">Valor Investido</h6>
-              <h4 class="text-[14px] font-medium text-blue-600">R$ 1.000,00</h4>
-            </div>
-            <div class="flex flex-col gap-2 p-2 border-l-2">
-              <h6 class="text-[10px] font-medium text-gray-400 uppercase">Resultado</h6>
-              <h4 class="text-[14px] font-medium text-blue-600">R$ 1.000,00</h4>
-            </div>
-            <div class="flex flex-col gap-2 p-2 border-l-2">
-              <h6 class="text-[10px] font-medium text-gray-400 uppercase">Resultado %</h6>
-              <h4 class="text-[14px] font-medium text-blue-600">20%</h4>
-            </div>
+            <template v-for="(item, index) in infos" :key="index">
+              <CardInfo :label="item.label" :value="item.value"></CardInfo>
+            </template>
           </div>
         </div>
 
-        <Table :items="items" :headers="headers">
+        <Table :items="items" :headers="headers" :loading="loading">
           <template #item-acquisition_cost="{ item }">
             {{ $filters.money(item.acquisition_cost) }}
           </template>
@@ -42,6 +25,7 @@
             {{ $filters.money(item.current_price) }}
           </template>
         </Table>
+        <Pagination></Pagination>
       </Card>
     </div>
   </main>
@@ -53,15 +37,26 @@
 </template>
 
 <script setup lang="ts">
-  import { ref, defineAsyncComponent } from 'vue'
+  import { ref, defineAsyncComponent, inject, onMounted } from 'vue'
   import Card from '@/components/Card/index.vue'
   import Table from '@/components/Table/index.vue'
   import Button from '@/components/Button/index.vue'
-
+  import Pagination from '@/components/Pagination/index.vue'
+  import CardInfo from '@/components/CardInfo/index.vue'
+  import Api from '../../services/Api'
   const VariableIncomeFormModal = defineAsyncComponent(
     () => import('./VariableIncomeFormModal.vue')
   )
+  const VariableIncomeService = inject('VariableIncomeService') as Api
+
+  onMounted(async () => {
+    await getVariableIncomes()
+  })
+
   let activeModal = ref<boolean>(false)
+  let items = ref<any>([])
+  let loading = ref<boolean>(false)
+
   const headers = [
     { text: 'Categoria', value: 'category.name' },
     { text: 'Subcategoria', value: 'subcategory.name' },
@@ -71,41 +66,48 @@
     { text: 'Preço Atual', value: 'current_price', sortable: true },
     { text: 'Quantidade', value: 'quantity', sortable: true },
   ]
-  const items: Array<any> = [
-    // {
-    //   category: {
-    //     name: 'Ações Brasil',
-    //   },
-    //   subcategory: {
-    //     name: 'Fundo de Fundos',
-    //   },
-    //   name: 'FII BTG PACTUAL',
-    //   code: 'BRCR11',
-    //   acquisition_cost: '71.82',
-    //   current_price: '68.10',
-    //   quantity: 10,
-    // },
-    // {
-    //   category: {
-    //     name: 'Fundo Imobiliário',
-    //   },
-    //   subcategory: {
-    //     name: 'Fundo de Fundos',
-    //   },
-    //   name: 'abv',
-    //   code: 'BRCR11',
-    //   acquisition_cost: '71.82',
-    //   current_price: '10.10',
-    //   quantity: 10,
-    // },
+
+  const infos: Array<{ label: string; value: string }> = [
+    {
+      label: 'Quantidade Ativos',
+      value: '15'
+    },
+    {
+      label: 'Saldo Bruto',
+      value: 'R$ 1.000,00'
+    },
+    {
+      label: 'VALOR INVESTIDO',
+      value: 'R$ 1.000,00'
+    },
+    {
+      label: 'Resultado',
+      value: 'R$ 1.000,00'
+    },
+    {
+      label: 'Resultado %',
+      value: '20%'
+    }
   ]
+
+  async function getVariableIncomes() {
+    try {
+      loading.value = true
+      const data = await VariableIncomeService.get()
+      items.value = data
+    } catch (error) {
+      console.log(error)
+    } finally {
+      loading.value = false
+    }
+  }
 
   function toggleModal(active: boolean) {
     activeModal.value = active
   }
 
-  function submitFormModal(value: any) {
-    console.log(value)
+  function submitFormModal(items: any) {
+    console.log(items)
   }
 </script>
 

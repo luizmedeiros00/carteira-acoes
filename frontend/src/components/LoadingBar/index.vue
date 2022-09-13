@@ -25,7 +25,7 @@
       rgba(233, 233, 233, 0.9) 50%,
       rgba(233, 233, 233, 0.8) 100%
     );
-    animation: shimmer 2s ease-out infinite;
+    animation: shimmer 1s ease-out infinite;
     content: '';
   }
 
