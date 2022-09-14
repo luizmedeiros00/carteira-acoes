@@ -1,6 +1,7 @@
 <template>
   <div class="my-2 py-2 overflow-x-auto sm:-mx-4 sm:px-4 lg:-mx-4 lg:px-4">
     <div class="align-middle inline-block min-w-full overflow-hidden">
+        <InputSearch v-model="search"></InputSearch>
       <table class="min-w-full">
         <thead>
           <tr>
@@ -66,8 +67,9 @@
 
 <script setup lang="ts">
   import _ from 'lodash'
-  import { reactive, watch } from 'vue'
+  import { reactive, watch, ref } from 'vue'
   import LoadingBar from '../LoadingBar/index.vue'
+  import InputSearch from '../InputSearch/index.vue'
   interface Header {
     text: string
     value: string
@@ -83,17 +85,24 @@
     ascending: boolean
     tableItems: Array<any>
   }
-  let props= defineProps<Props>()
+  let props = defineProps<Props>()
   const state: State = reactive({
     sortColumn: '',
     ascending: false,
     tableItems: [],
   })
 
+  let search = ref('')
+
+  watch(() => search.value, (newValue, oldValue ) => {
+    state.tableItems = props.items.filter((data) => JSON.stringify(data).toLowerCase().indexOf(newValue.toLowerCase()) !== -1)
+  })
+
+
   watch(
     () => _.cloneDeep(props.items),
     (newValue, oldValue) => {
-     state.tableItems = newValue
+      state.tableItems = newValue
     },
     { deep: true }
   )

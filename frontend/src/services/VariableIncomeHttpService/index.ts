@@ -5,9 +5,9 @@ import VariableIncome from '../../interfaces/VariableIncome'
 export default class VariableIncomeHttpService implements Api {
   constructor(readonly httpClient: HttpClient, readonly url: string) {}
 
-  async get(): Promise<Array<any>> {
+  async get(): Promise<VariableIncome[]> {
     const response = await this.httpClient.get(`/${this.url}`)
-    return response
+    return response as VariableIncome[]
   }
 
   async post(data: any): Promise<Array<any>> {

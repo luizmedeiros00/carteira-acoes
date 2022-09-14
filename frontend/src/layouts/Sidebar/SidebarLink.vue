@@ -12,11 +12,9 @@
     ]"
   >
     <slot name="icon">
-      <!-- <EmptyCircleIcon aria-hidden="true" class="flex-shrink-0 w-6 h-6" /> -->
-      empty
     </slot>
 
-    <span class="text-base font-medium" v-show="true || false">{{
+    <span class="text-base font-medium">{{
       title
     }}</span>
   </a>
@@ -33,11 +31,9 @@
     ]"
   >
     <slot name="icon">
-      <!-- <EmptyCircleIcon aria-hidden="true" class="flex-shrink-0 w-6 h-6" /> -->
-      empty
     </slot>
 
-    <span class="text-base font-medium" v-show="true || false">{{
+    <span class="text-base font-medium">{{
       title
     }}</span>
   </router-link>
@@ -54,11 +50,9 @@
     ]"
   >
     <slot name="icon">
-      <!-- <EmptyCircleIcon aria-hidden="true" class="flex-shrink-0 w-6 h-6" /> -->
-      empty
     </slot>
 
-    <span class="text-base font-medium" v-show="true || false">{{
+    <span class="text-base font-medium">{{
       title
     }}</span>
     <slot name="arrow" ></slot>
@@ -66,8 +60,6 @@
 </template>
 
 <script setup>
-  // import { sidebarState } from '@/composables'
-  // import { EmptyCircleIcon } from '@/components/icons/outline'
 
   const props = defineProps({
     href: {

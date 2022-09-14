@@ -4,8 +4,8 @@
       "id": 1,
       "name": "FII BTG PACTUA",
       "code": "BRCR11",
-      "acquisition_cost": "71.82",
-      "current_price": "68.10",
+      "acquisition_cost": 71.82,
+      "current_price": 68.10,
       "quantity": 10,
       "category": {
         "name": "Fundos imobiliários"
@@ -16,11 +16,109 @@
     },
     {
       "id": 2,
-      "name": "Vinci Instrumentos Financeiros Fundo DE Investimento Imobiliario",
-      "code": "VIFI11",
-      "acquisition_cost": "8.33",
-      "current_price": "7.53",
-      "quantity": 8,
+      "name": "FII CAPI SEC",
+      "code": "CPTS11",
+      "acquisition_cost": 89.27,
+      "current_price": 91.43,
+      "quantity": 7,
+      "category": {
+        "name": "Fundos imobiliários"
+      },
+      "subcategory": {
+        "name": "Recebíveis imobiliários"
+      }
+    },
+    {
+      "id": 3,
+      "name": "Devant Recebiveis Imobiliarios FII",
+      "code": "DEVA11",
+      "acquisition_cost": 99.01,
+      "current_price": 96.34,
+      "quantity": 6,
+      "category": {
+        "name": "Fundos imobiliários"
+      },
+      "subcategory": {
+        "name": "Fundo de papel"
+      }
+    },
+    {
+      "id": 4,
+      "name": "FII Excellen",
+      "code": "FEXC11",
+      "acquisition_cost": 88.37,
+      "current_price": 87.27,
+      "quantity": 7,
+      "category": {
+        "name": "Fundos imobiliários"
+      },
+      "subcategory": {
+        "name": "Recebíveis imobiliários"
+      }
+    },
+    {
+      "id": 5,
+      "name": "GGR Covepi Renda FII",
+      "code": "GGRC11",
+      "acquisition_cost": 104.33,
+      "current_price": 118.27,
+      "quantity": 5,
+      "category": {
+        "name": "Fundos imobiliários"
+      },
+      "subcategory": {
+        "name": "Imóveis logísticos"
+      }
+    },
+    {
+      "id": 6,
+      "name": "HABITAT II",
+      "code": "HABT11",
+      "acquisition_cost": 96.13,
+      "current_price": 95.00,
+      "quantity": 6,
+      "category": {
+        "name": "Fundos imobiliários"
+      },
+      "subcategory": {
+        "name": "Fundos de papel"
+      }
+    },
+    {
+      "id": 7,
+      "name": "HECTARE CE FII",
+      "code": "HCTR11",
+      "acquisition_cost": 110.94,
+      "current_price": 105.66,
+      "quantity": 6,
+      "category": {
+        "name": "Fundos imobiliários"
+      },
+      "subcategory": {
+        "name": "Fundos de papel"
+      }
+    },
+    {
+      "id": 8,
+      "name": "iShares S&P 500 FIC de Fundo de Indice IE",
+      "code": "IVVB11",
+      "acquisition_cost": 240.70,
+      "current_price": 224.50,
+      "quantity": 38,
+      "category": {
+        "name": "Ações EUA"
+      },
+      "subcategory": {
+        "name": "Fundos de índice"
+      }
+    },
+    {
+      "id": 9,
+      "name": "Maua Capital Hedge Fund FI Imobiliario",
+      "code": "MCHF11",
+      "acquisition_cost": 9.26,
+      "current_price": 9.27,
+      "quantity": 64,
       "category": {
         "name": "Fundos imobiliários"
       },
@@ -29,17 +127,101 @@
       }
     },
     {
-      "id": 3,
-      "name": "XP Properties FII",
-      "code": "XPPR11",
-      "acquisition_cost": "47.68",
-      "current_price": "48.83",
-      "quantity": 2,
+      "id": 10,
+      "name": "Fundo Investimento Imobiliario Mogno Fundo Fundos",
+      "code": "MGFF11",
+      "acquisition_cost": 65.25,
+      "current_price": 66.27,
+      "quantity": 10,
       "category": {
         "name": "Fundos imobiliários"
       },
       "subcategory": {
-        "name": "Fundos de tijolos"
+        "name": "Fundos de fundos"
+      }
+    },
+    {
+      "id": 11,
+      "name": "Patria Logistica Fundo de Investimento Imobiliario",
+      "code": "PATL11",
+      "acquisition_cost": 71.54,
+      "current_price": 79.85,
+      "quantity": 8,
+      "category": {
+        "name": "Fundos imobiliários"
+      },
+      "subcategory": {
+        "name": "Imóveis logísticos"
+      }
+    },
+    {
+      "id": 12,
+      "name": "FI Imobiliario RBR Alpha Fundo de Fundos",
+      "code": "RBRF11",
+      "acquisition_cost": 76.25,
+      "current_price": 74.40,
+      "quantity": 8,
+      "category": {
+        "name": "Fundos imobiliários"
+      },
+      "subcategory": {
+        "name": "Fundo de fundos"
+      }
+    },
+    {
+      "id": 13,
+      "name": "Santander Renda DE Alugueis Fundo Investimento Imobiliarios",
+      "code": "SARE11",
+      "acquisition_cost": 69.18,
+      "current_price": 79.75,
+      "quantity": 8,
+      "category": {
+        "name": "Fundos imobiliários"
+      },
+      "subcategory": {
+        "name": "Híbrido"
+      }
+    },
+    {
+      "id": 14,
+      "name": "Vectis Juros Real Fundo DE Investimento Imobiliario-FII",
+      "code": "VCJR11",
+      "acquisition_cost": 90.32,
+      "current_price": 93.20,
+      "quantity": 7,
+      "category": {
+        "name": "Fundos imobiliários"
+      },
+      "subcategory": {
+        "name": "Fundos de papel"
+      }
+    },
+    {
+      "id": 15,
+      "name": "Xp Credito Imobiliario-Fundo DE Investimento Imobiliario",
+      "code": "XPCI11",
+      "acquisition_cost": 92.06,
+      "current_price": 92.40,
+      "quantity": 6,
+      "category": {
+        "name": "Fundos imobiliários"
+      },
+      "subcategory": {
+        "name": "Fundos de papel"
+      }
+    },
+    {
+      "id": 16,
+      "name": "XP Properties FII",
+      "code": "XPPR11",
+      "acquisition_cost": 58.14,
+      "current_price": 47.82,
+      "quantity": 15,
+      "category": {
+        "name": "Fundos imobiliários"
+      },
+      "subcategory": {
+        "name": "Escritórios"
       }
     }
   ],

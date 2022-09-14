@@ -42,48 +42,11 @@
         />
       </SidebarCollapsible>
     </div>
-    <!-- <ul class="space-y-2">
-        <li>
-          <router-link
-            :to="{ name: 'Resumo Carteira' }"
-            :class="[
-              'flex items-center p-2 text-base font-normal rounded-lg hover:bg-gray-100 hover:text-gray-500',
-              {
-                active: currentRoute === 'Resumo Carteira',
-              },
-            ]"
-          >
-            <vue-feather
-              class="w-6 h-6 text-gray-400 transition duration-75 hover:text-gray-500"
-              type="layout"
-            ></vue-feather>
-            <span class="ml-3">Resumo Carteira</span>
-          </router-link>
-        </li>
-        <li>
-          <router-link
-            :to="{ name: 'Renda Variável' }"
-            :class="[
-              'flex items-center p-2 text-base font-normal text-gray-400 rounded-lg hover:bg-gray-100 hover:text-gray-500',
-              {
-                active: currentRoute === 'Renda Variável',
-              },
-            ]"
-          >
-            <vue-feather
-              class="w-6 h-6 text-gray-400 transition duration-75 hover:text-gray-500"
-              type="list"
-            ></vue-feather>
-            <span class="ml-3">Ações</span>
-          </router-link>
-        </li>
-      </ul> -->
   </aside>
 </template>
 
 <script setup lang="ts">
-  import { computed, ComputedRef } from 'vue'
-  import { useRoute, RouterLink } from 'vue-router'
+  import { useRoute } from 'vue-router'
   import SidebarCollapsible from './SidebarCollapsible.vue'
   import SidebarCollapsibleItem from './SidebarCollapsibleItem.vue'
   import SidebarLink from './SidebarLink.vue'

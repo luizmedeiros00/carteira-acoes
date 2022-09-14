@@ -1,7 +1,6 @@
 import router from './router'
 import { createApp } from 'vue'
 import VueFeather from 'vue-feather';
-import filters from './filters'
 import { plugin, defaultConfig } from '@formkit/vue'
 import { generateClasses } from '@formkit/themes'
 import { pt } from '@formkit/i18n'
@@ -17,7 +16,6 @@ const httpClient = new AxiosAdapter()
 const VariableIncomeService = new VariableIncomeHttpService(httpClient, 'variable-income')
 
 const app = createApp(App)
-app.config.globalProperties.$filters = filters
 app.component(VueFeather.name, VueFeather)
 app.use(router)
 app.provide('VariableIncomeService', VariableIncomeService)

@@ -18,11 +18,11 @@
 
         <Table :items="items" :headers="headers" :loading="loading">
           <template #item-acquisition_cost="{ item }">
-            {{ $filters.money(item.acquisition_cost) }}
+            {{ money(item.acquisition_cost) }}
           </template>
 
           <template #item-current_price="{ item }">
-            {{ $filters.money(item.current_price) }}
+            {{ money(item.current_price) }}
           </template>
         </Table>
         <Pagination></Pagination>
@@ -44,6 +44,7 @@
   import Pagination from '@/components/Pagination/index.vue'
   import CardInfo from '@/components/CardInfo/index.vue'
   import Api from '../../services/Api'
+  import { money, profitability } from '../../utils/functions'
   const VariableIncomeFormModal = defineAsyncComponent(
     () => import('./VariableIncomeFormModal.vue')
   )
@@ -53,9 +54,15 @@
     await getVariableIncomes()
   })
 
+  interface InfoCard {
+    label: string
+    value: string | null | number
+  }
+
   let activeModal = ref<boolean>(false)
   let items = ref<any>([])
   let loading = ref<boolean>(false)
+  let infos = ref<InfoCard[]>([])
 
   const headers = [
     { text: 'Categoria', value: 'category.name' },
@@ -67,34 +74,12 @@
     { text: 'Quantidade', value: 'quantity', sortable: true },
   ]
 
-  const infos: Array<{ label: string; value: string }> = [
-    {
-      label: 'Quantidade Ativos',
-      value: '15'
-    },
-    {
-      label: 'Saldo Bruto',
-      value: 'R$ 1.000,00'
-    },
-    {
-      label: 'VALOR INVESTIDO',
-      value: 'R$ 1.000,00'
-    },
-    {
-      label: 'Resultado',
-      value: 'R$ 1.000,00'
-    },
-    {
-      label: 'Resultado %',
-      value: '20%'
-    }
-  ]
-
   async function getVariableIncomes() {
     try {
       loading.value = true
       const data = await VariableIncomeService.get()
       items.value = data
+      createInfosCard(data)
     } catch (error) {
       console.log(error)
     } finally {
@@ -102,8 +87,29 @@
     }
   }
 
+  function createInfosCard(data: Array<any>) {
+    infos.value = []
+    const totalAcquisitionCost = data.reduce(
+      (accumulator: number, current) => accumulator + current.acquisition_cost,
+      1
+    )
+    const totalCurrentPrice = data.reduce(
+      (accumulator: number, current) => accumulator + current.current_price,
+      1
+    )
+    infos.value.push({ label: 'Quantidade de ativos', value: data.length })
+    infos.value.push({ label: 'Saldo Bruto', value: money(totalCurrentPrice) })
+    infos.value.push({ label: 'Valor Investido', value: money(totalAcquisitionCost) })
+    infos.value.push({ label: 'Resultado', value: money(totalCurrentPrice - totalAcquisitionCost) })
+    infos.value.push({
+      label: 'Resultado %',
+      value: profitability(totalCurrentPrice, totalCurrentPrice - totalAcquisitionCost),
+    })
+  }
+
   function toggleModal(active: boolean) {
-    activeModal.value = active
+    // activeModal.value = active
+    getVariableIncomes()
   }
 
   function submitFormModal(items: any) {
@@ -111,8 +117,4 @@
   }
 </script>
 
-<style scoped lang="postcss">
-  .active {
-    @apply border-b-2 border-indigo-600 text-indigo-600 font-semibold;
-  }
-</style>
+<style scoped lang="postcss"></style>

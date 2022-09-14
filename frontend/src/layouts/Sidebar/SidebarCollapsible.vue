@@ -3,8 +3,6 @@
     <SidebarLink @click="isOpen = !isOpen" :title="title" :active="active">
       <template #icon>
         <slot name="icon">
-          <!-- <EmptyCircleIcon aria-hidden="true" class="flex-shrink-0 w-6 h-6" /> -->
-          <p>empyt icon</p>
         </slot>
       </template>
 
@@ -61,41 +59,38 @@
   </div>
 </template>
 
-<script setup>
-  import { ref, toRefs } from 'vue'
+<script setup lang="ts">
+  import { ref, toRefs, watchEffect } from 'vue'
   import SidebarLink from './SidebarLink.vue'
-  // import { EmptyCircleIcon } from '@/components/icons/outline'
-//   import { sidebarState } from '@/composables'
 
-  const props = defineProps({
-    title: {
-      type: String,
-    },
-    icon: {
-      required: false,
-    },
-    active: {
-      type: Boolean,
-    },
-  })
+  interface Props {
+    title: string
+    active: boolean
+  }
+
+  const props = defineProps<Props>()
 
   const { active } = toRefs(props)
 
-  const isOpen = ref(active.value)
+  const isOpen = ref<boolean>(false)
 
-  const beforeEnter = (el) => {
+  watchEffect(() => {
+    isOpen.value = active.value
+  })
+
+  const beforeEnter = (el: any) => {
     el.style.maxHeight = `0px`
   }
 
-  const enter = (el) => {
+  const enter = (el: any) => {
     el.style.maxHeight = `${el.scrollHeight}px`
   }
 
-  const beforeLeave = (el) => {
+  const beforeLeave = (el: any) => {
     el.style.maxHeight = `${el.scrollHeight}px`
   }
 
-  const leave = (el) => {
+  const leave = (el: any) => {
     el.style.maxHeight = `0px`
   }
 </script>
