@@ -9,16 +9,19 @@ import './assets/css/tailwind.css'
 import '../src/assets/css/fonts.css'
 import 'animate.css';
 
-import AxiosAdapter from './services/AxiosAdapter';
+// import AxiosAdapter from './services/AxiosAdapter';
 import VariableIncomeHttpService from './services/VariableIncomeHttpService';
+import FixedIncomeHttpService from './services/FixedIncomeHttpService';
 
-const httpClient = new AxiosAdapter()
-const VariableIncomeService = new VariableIncomeHttpService(httpClient, 'variable-income')
+// const httpClient = new AxiosAdapter()
+const VariableIncomeService = new VariableIncomeHttpService('variable-income')
+const FixedIncomeService = new FixedIncomeHttpService('fixed-incomes')
 
 const app = createApp(App)
 app.component(VueFeather.name, VueFeather)
 app.use(router)
 app.provide('VariableIncomeService', VariableIncomeService)
+app.provide('FixedIncomeService', FixedIncomeService)
 
 app.use(plugin, defaultConfig({
   locales: { pt },
@@ -30,6 +33,9 @@ app.use(plugin, defaultConfig({
         label: 'form-label inline-block mb-1 text-gray-700',
         helper: 'text-sm text-gray-500 mt-1',
         message: 'text-red-500 mb-1 text-xs',
+      },
+      select: {
+        input: 'form-select appearance-none block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none'
       },
       text: {
         input: 'form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none'

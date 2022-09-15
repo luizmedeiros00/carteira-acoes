@@ -11,7 +11,7 @@ export const routes = [
   {
     path: '/product/fixed-income',
     name: 'Renda Fixa',
-    component: () => import('../views/Stocks/FixedIncome.vue'),
+    component: () => import('../views/FixedIncome/index.vue'),
   },
   {
     path: '/product/variable-income',

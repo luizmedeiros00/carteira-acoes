@@ -1,7 +1,7 @@
 <template>
   <div class="my-2 py-2 overflow-x-auto sm:-mx-4 sm:px-4 lg:-mx-4 lg:px-4">
     <div class="align-middle inline-block min-w-full overflow-hidden">
-        <InputSearch v-model="search"></InputSearch>
+      <InputSearch v-model="search"></InputSearch>
       <table class="min-w-full">
         <thead>
           <tr>
@@ -94,10 +94,14 @@
 
   let search = ref('')
 
-  watch(() => search.value, (newValue, oldValue ) => {
-    state.tableItems = props.items.filter((data) => JSON.stringify(data).toLowerCase().indexOf(newValue.toLowerCase()) !== -1)
-  })
-
+  watch(
+    () => search.value,
+    (newValue, oldValue) => {
+      state.tableItems = props.items.filter(
+        (data) => JSON.stringify(data).toLowerCase().indexOf(newValue.toLowerCase()) !== -1
+      )
+    }
+  )
 
   watch(
     () => _.cloneDeep(props.items),

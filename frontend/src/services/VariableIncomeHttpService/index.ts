@@ -1,17 +1,17 @@
 import Api from '../Api'
-import HttpClient from '../HttpClient'
+import httpCliente from '../HttpClient'
 import VariableIncome from '../../interfaces/VariableIncome'
 
-export default class VariableIncomeHttpService implements Api {
-  constructor(readonly httpClient: HttpClient, readonly url: string) {}
+export default class VariableIncomeHttpService implements Api<VariableIncome> {
+  constructor(readonly url: string) {}
 
   async get(): Promise<VariableIncome[]> {
-    const response = await this.httpClient.get(`/${this.url}`)
-    return response as VariableIncome[]
+    const response = await httpCliente.get(`/${this.url}`)
+    return response.data
   }
 
   async post(data: any): Promise<Array<any>> {
-    const response = await this.httpClient.post(`/${this.url}`, data)
+    const response = await httpCliente.post(`/${this.url}`, data)
 
     return response.data
   }

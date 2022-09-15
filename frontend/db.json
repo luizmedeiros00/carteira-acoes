@@ -225,6 +225,33 @@
       }
     }
   ],
-  "comments": [{ "id": 1, "body": "some comment", "postId": 1 }],
-  "profile": { "name": "typicode" }
+  "fixed-incomes": [
+    {
+      "id": 1,
+      "stock_class": {
+        "name": "Renda Fixa"
+      },
+      "name": "Tesouro IPCA+ 2026",
+      "value": 2920.34,
+      "initial_date": "2022-09-15",
+      "final_date": null,
+      "subcategory": {
+        "name": "Tesouro direto"
+      }
+    },
+    {
+      "id": 2,
+      "stock_class": {
+        "name": "Reserva de emergência"
+      },
+      "name": "CDB (100% do CDI)",
+      "value": 17537.31,
+      "initial_date": "2022-09-15",
+      "final_date": null,
+      "subcategory": {
+        "name": "Pós-fixada"
+      }
+    }
+  ]
+
 }

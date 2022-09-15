@@ -1,4 +1,10 @@
-export default interface HttpClient {
-  get(url: string): Promise<any>
-  post(url: string, data: any): Promise<any>
-}
+import axios, { AxiosInstance } from "axios";
+
+const httpClient: AxiosInstance = axios.create({
+  baseURL: "http://localhost:3000",
+  headers: {
+    "Content-type": "application/json",
+  },
+});
+
+export default httpClient;

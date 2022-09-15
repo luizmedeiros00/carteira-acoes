@@ -35,9 +35,14 @@
           title="Renda Variável"
           :active="isCurrentRoute('Renda Variável')"
         />
-        <SidebarCollapsibleItem :to="{ name: 'Renda Fixa' }" title="Renda Fixa" />
+        <SidebarCollapsibleItem
+          :to="{ name: 'Renda Fixa' }"
+          title="Renda Fixa"
+          :active="isCurrentRoute('Renda Fixa')"
+        />
         <SidebarCollapsibleItem
           :to="{ name: 'Fundos de Investimento' }"
+          :active="isCurrentRoute('Fundos de Investimento')"
           title="Fundos de Investimento"
         />
       </SidebarCollapsible>

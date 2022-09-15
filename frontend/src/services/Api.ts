@@ -1,6 +1,5 @@
-import VariableIncome from '../interfaces/VariableIncome'
-
-export default interface Api {
-  get(): Promise<VariableIncome[]>
-  post(data: any): Promise<any>
+export default interface Api<ResponseType> {
+  get(): Promise<ResponseType[]>
+  post<T>(data: T): Promise<any>
 }
+

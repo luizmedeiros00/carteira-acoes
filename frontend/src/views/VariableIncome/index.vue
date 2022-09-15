@@ -25,7 +25,6 @@
             {{ money(item.current_price) }}
           </template>
         </Table>
-        <Pagination></Pagination>
       </Card>
     </div>
   </main>
@@ -41,15 +40,14 @@
   import Card from '@/components/Card/index.vue'
   import Table from '@/components/Table/index.vue'
   import Button from '@/components/Button/index.vue'
-  import Pagination from '@/components/Pagination/index.vue'
   import CardInfo from '@/components/CardInfo/index.vue'
   import Api from '../../services/Api'
   import { money, profitability } from '../../utils/functions'
+  import VariableIncome from 'src/interfaces/VariableIncome'
   const VariableIncomeFormModal = defineAsyncComponent(
     () => import('./VariableIncomeFormModal.vue')
   )
-  const VariableIncomeService = inject('VariableIncomeService') as Api
-
+  const VariableIncomeService = inject('VariableIncomeService') as Api<VariableIncome>
   onMounted(async () => {
     await getVariableIncomes()
   })
@@ -60,9 +58,9 @@
   }
 
   let activeModal = ref<boolean>(false)
-  let items = ref<any>([])
   let loading = ref<boolean>(false)
   let infos = ref<InfoCard[]>([])
+  let items = ref<VariableIncome[]>([])
 
   const headers = [
     { text: 'Categoria', value: 'category.name' },
