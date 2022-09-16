@@ -43,8 +43,8 @@
   import CardInfo from '@/components/CardInfo/index.vue'
   import Api from '../../services/Api'
   import { money, profitability } from '../../utils/functions'
-  import VariableIncome from 'src/interfaces/VariableIncome'
-  import InfoCard from 'src/interfaces/InforCard'
+  import VariableIncome from '../../interfaces/VariableIncome'
+  import InfoCard from '../../interfaces/InforCard'
   const VariableIncomeFormModal = defineAsyncComponent(
     () => import('./VariableIncomeFormModal.vue')
   )

@@ -19,9 +19,9 @@ export const routes = [
     component: () => import('../views/VariableIncome/index.vue'),
   },
   {
-    path: '/product/investiment-funds',
+    path: '/product/investment-funds',
     name: 'Fundos de Investimento',
-    component: () => import('../views/Stocks/InvestimentFunds.vue'),
+    component: () => import('../views/InvestmentFunds/index.vue'),
   },
 ]
 

@@ -3,12 +3,7 @@
     <div class="py-4">
       <div class="flex gap-4 justify-between content-center">
         <h2 class="text-xl font-semibold leading-tight">Renda Fixa</h2>
-        <button
-          @click="toggleModal(true)"
-          class="bg-blue-600 rounded-full p-3 text-white text-sm hover:bg-blue-500"
-        >
-          Adicionar Produto
-        </button>
+        <Button pill @click="toggleModal(true)">Adicionar</Button>
       </div>
     </div>
     <div class="flex flex-col">
@@ -52,10 +47,11 @@
   import Card from '@/components/Card/index.vue'
   import Table from '@/components/Table/index.vue'
   import CardInfo from '@/components/CardInfo/index.vue'
+  import Button from '@/components/Button/index.vue'
   import { money, date } from '../../utils/functions'
-  import FixedIncome from 'src/interfaces/FixedIncome'
-  import InfoCard from 'src/interfaces/InforCard'
-  import Api from 'src/services/Api'
+  import FixedIncome from '../../interfaces/FixedIncome'
+  import InfoCard from '../../interfaces/InforCard'
+  import Api from '../../services/Api'
 
   const FixedIncomeFormModal = defineAsyncComponent(() => import('./FixedIncomeFormModal.vue'))
   const FixedIncomeService = inject('FixedIncomeService') as Api<FixedIncome>

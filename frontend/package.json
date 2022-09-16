@@ -26,6 +26,7 @@
     "vue-router": "^4.1.4"
   },
   "devDependencies": {
+    "@types/cleave.js": "^1.4.7",
     "@types/lodash": "^4.14.184",
     "@types/node": "^18.7.13",
     "@typescript-eslint/eslint-plugin": "^5.35.1",

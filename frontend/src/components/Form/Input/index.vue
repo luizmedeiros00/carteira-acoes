@@ -14,7 +14,7 @@
 </template>
 
 <script setup lang="ts">
-  import { computed } from '@vue/reactivity'
+  import { computed } from 'vue'
 
   const emit = defineEmits(['update:modelValue'])
   interface Props {
