@@ -13,13 +13,27 @@
     </div>
     <div class="flex flex-col">
       <Card>
+        <div class="rounded-lg border border-gray-200 p-2">
+          <div class="grid grid-cols-5 gap-2">
+            <CardInfo
+              v-for="(item, index) in infos"
+              :key="index"
+              :label="item.label"
+              :value="item.value"
+            ></CardInfo>
+          </div>
+        </div>
         <Table :items="items" :headers="headers">
-          <template #item-acquisition_cost="{ item }">
-            {{ money(item.acquisition_cost) }}
+          <template #item-value="{ item }">
+            {{ money(item.value) }}
           </template>
 
-          <template #item-current_price="{ item }">
-            {{ money(item.current_price) }}
+          <template #item-initial_date="{ item }">
+            {{ date(item.initial_date) }}
+          </template>
+
+          <template #item-final_date="{ item }">
+            {{ date(item.final_date) }}
           </template>
         </Table>
       </Card>
@@ -37,15 +51,19 @@
   import { defineAsyncComponent, onMounted, ref, inject } from 'vue'
   import Card from '@/components/Card/index.vue'
   import Table from '@/components/Table/index.vue'
-  import { money } from '../../utils/functions'
+  import CardInfo from '@/components/CardInfo/index.vue'
+  import { money, date } from '../../utils/functions'
   import FixedIncome from 'src/interfaces/FixedIncome'
+  import InfoCard from 'src/interfaces/InforCard'
   import Api from 'src/services/Api'
 
   const FixedIncomeFormModal = defineAsyncComponent(() => import('./FixedIncomeFormModal.vue'))
   const FixedIncomeService = inject('FixedIncomeService') as Api<FixedIncome>
   const activeModal = ref<boolean>(false)
+  const infos = ref<InfoCard[]>([])
   const items = ref<FixedIncome[]>([])
   const headers = [
+    { text: 'Classe', value: 'stock_class.name' },
     { text: 'Subcategoria', value: 'subcategory.name' },
     { text: 'Nome', value: 'name' },
     { text: 'Valor', value: 'value', sortable: true },
@@ -60,6 +78,27 @@
   async function getFixedIncomes(): Promise<void> {
     const data = await FixedIncomeService.get()
     items.value = data
+    createInfosCard(data)
+  }
+
+  function createInfosCard(data: FixedIncome[]) {
+    infos.value = []
+    const totalValue = data.reduce(
+      (accumulator: number, current) => accumulator + current.value,
+      1
+    )
+    // const totalCurrentPrice = data.reduce(
+    //   (accumulator: number, current) => accumulator + current.current_price,
+    //   1
+    // )
+    infos.value.push({ label: 'Quantidade de ativos', value: data.length })
+    // infos.value.push({ label: 'Saldo Bruto', value: money(totalCurrentPrice) })
+    infos.value.push({ label: 'Valor Investido', value: money(totalValue) })
+    // infos.value.push({ label: 'Resultado', value: money(totalCurrentPrice - totalAcquisitionCost) })
+    // infos.value.push({
+    //   label: 'Resultado %',
+    //   value: profitability(totalCurrentPrice, totalCurrentPrice - totalAcquisitionCost),
+    // })
   }
 
   function toggleModal(active: boolean) {

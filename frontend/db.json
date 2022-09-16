@@ -234,7 +234,7 @@
       "name": "Tesouro IPCA+ 2026",
       "value": 2920.34,
       "initial_date": "2022-09-15",
-      "final_date": null,
+      "final_date": "2026-09-15",
       "subcategory": {
         "name": "Tesouro direto"
       }

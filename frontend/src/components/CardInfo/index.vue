@@ -7,6 +7,7 @@
   </div>
 </template>
 <script setup lang="ts">
+
   interface Props {
     label: string
     value: string | null | number

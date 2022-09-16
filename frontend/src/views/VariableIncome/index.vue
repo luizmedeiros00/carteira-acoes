@@ -44,6 +44,7 @@
   import Api from '../../services/Api'
   import { money, profitability } from '../../utils/functions'
   import VariableIncome from 'src/interfaces/VariableIncome'
+  import InfoCard from 'src/interfaces/InforCard'
   const VariableIncomeFormModal = defineAsyncComponent(
     () => import('./VariableIncomeFormModal.vue')
   )
@@ -51,11 +52,6 @@
   onMounted(async () => {
     await getVariableIncomes()
   })
-
-  interface InfoCard {
-    label: string
-    value: string | null | number
-  }
 
   let activeModal = ref<boolean>(false)
   let loading = ref<boolean>(false)

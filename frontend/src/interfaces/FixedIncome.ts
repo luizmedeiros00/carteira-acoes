@@ -1,6 +1,6 @@
 export default interface FixedIncome {
   name: string
-  value: string
+  value: number
   current_price: string
   quantity: number
   initial_date: string
