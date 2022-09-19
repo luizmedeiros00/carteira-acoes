@@ -3,7 +3,7 @@
     <div class="py-4">
       <div class="flex gap-4 justify-between content-center">
         <h2 class="text-xl font-semibold leading-tight">Renda Variável</h2>
-        <Button pill @click="toggleModal(true)">Adicionar</Button>
+        <Button pill @click="openModal">Adicionar</Button>
       </div>
     </div>
     <div class="flex">
@@ -28,11 +28,9 @@
       </Card>
     </div>
   </main>
-  <VariableIncomeFormModal
-    :active-modal="activeModal"
-    @submit-form="submitFormModal"
-    @close-modal="toggleModal(false)"
-  ></VariableIncomeFormModal>
+  <BaseModal persistent ref="modal" title="Cadastro Renda Variável">
+    <VariableIncomeForm form="ref" @submit="submitForm"></VariableIncomeForm>
+  </BaseModal>
 </template>
 
 <script setup lang="ts">
@@ -45,15 +43,19 @@
   import { money, profitability } from '../../utils/functions'
   import VariableIncome from '../../interfaces/VariableIncome'
   import InfoCard from '../../interfaces/InforCard'
-  const VariableIncomeFormModal = defineAsyncComponent(
-    () => import('./VariableIncomeFormModal.vue')
-  )
+  import VariableIncomeFormType from '../../interfaces/VariableIncomeFormType'
+
+  const BaseModal = defineAsyncComponent(() => import('@/components/BaseModal/index.vue'))
+  const VariableIncomeForm = defineAsyncComponent(() => import('./VariableIncomeForm.vue'))
+
   const VariableIncomeService = inject('VariableIncomeService') as Api<VariableIncome>
+  const modal = ref<InstanceType<typeof BaseModal> | null>(null)
+  const form = ref<InstanceType<typeof VariableIncomeForm> | null>(null)
+
   onMounted(async () => {
     await getVariableIncomes()
   })
 
-  let activeModal = ref<boolean>(false)
   let loading = ref<boolean>(false)
   let infos = ref<InfoCard[]>([])
   let items = ref<VariableIncome[]>([])
@@ -101,13 +103,16 @@
     })
   }
 
-  function toggleModal(active: boolean) {
-    // activeModal.value = active
-    getVariableIncomes()
+  function openModal() {
+    modal.value?.open()
   }
 
-  function submitFormModal(items: any) {
-    console.log(items)
+  function closeModal() {
+    form.value?.resetForm()
+  }
+
+  function submitForm(data: VariableIncomeFormType) {
+    console.log(data)
   }
 </script>
 

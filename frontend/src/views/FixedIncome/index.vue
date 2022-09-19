@@ -3,7 +3,7 @@
     <div class="py-4">
       <div class="flex gap-4 justify-between content-center">
         <h2 class="text-xl font-semibold leading-tight">Renda Fixa</h2>
-        <Button pill @click="toggleModal(true)">Adicionar</Button>
+        <Button pill @click="openModal">Adicionar</Button>
       </div>
     </div>
     <div class="flex flex-col">
@@ -34,12 +34,9 @@
       </Card>
     </div>
   </main>
-  <FixedIncomeFormModal
-    :active-modal="activeModal"
-    @submit-form="submitFormModal"
-    @close-modal="toggleModal(false)"
-  >
-  </FixedIncomeFormModal>
+  <BaseModal persistent ref="modal" title="Cadastro Renda Fixa" @close="closeModal">
+    <FixedIncomeForm ref="form" @submit="submitForm"> </FixedIncomeForm>
+  </BaseModal>
 </template>
 
 <script setup lang="ts">
@@ -51,11 +48,16 @@
   import { money, date } from '../../utils/functions'
   import FixedIncome from '../../interfaces/FixedIncome'
   import InfoCard from '../../interfaces/InforCard'
+  import FixedIncomeFormType from '../../interfaces/FixedIncomeFormType'
   import Api from '../../services/Api'
 
-  const FixedIncomeFormModal = defineAsyncComponent(() => import('./FixedIncomeFormModal.vue'))
+  const BaseModal = defineAsyncComponent(() => import('@/components/BaseModal/index.vue'))
+  const FixedIncomeForm = defineAsyncComponent(() => import('./FixedIncomeForm.vue'))
   const FixedIncomeService = inject('FixedIncomeService') as Api<FixedIncome>
-  const activeModal = ref<boolean>(false)
+
+  const modal = ref<InstanceType<typeof BaseModal> | null>(null)
+  const form = ref<InstanceType<typeof FixedIncomeForm> | null>(null)
+
   const infos = ref<InfoCard[]>([])
   const items = ref<FixedIncome[]>([])
   const headers = [
@@ -71,6 +73,18 @@
     getFixedIncomes()
   })
 
+  function openModal() {
+    modal.value?.open()
+  }
+
+  function closeModal() {
+    form.value?.resetForm()
+  }
+
+  function submitForm(data: FixedIncomeFormType) {
+    console.log(data)
+  }
+
   async function getFixedIncomes(): Promise<void> {
     const data = await FixedIncomeService.get()
     items.value = data
@@ -79,10 +93,7 @@
 
   function createInfosCard(data: FixedIncome[]) {
     infos.value = []
-    const totalValue = data.reduce(
-      (accumulator: number, current) => accumulator + current.value,
-      1
-    )
+    const totalValue = data.reduce((accumulator: number, current) => accumulator + current.value, 1)
     // const totalCurrentPrice = data.reduce(
     //   (accumulator: number, current) => accumulator + current.current_price,
     //   1
@@ -95,10 +106,6 @@
     //   label: 'Resultado %',
     //   value: profitability(totalCurrentPrice, totalCurrentPrice - totalAcquisitionCost),
     // })
-  }
-
-  function toggleModal(active: boolean) {
-    activeModal.value = active
   }
 
   function submitFormModal(data: any) {}

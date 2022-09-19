@@ -252,6 +252,17 @@
         "name": "Pós-fixada"
       }
     }
+  ],
+  "investment-funds": [
+    {
+      "id": 1,
+      "stock_class": {
+        "name": "Ações Brasil"
+      },
+      "name": "Clube do valor FIA",
+      "cnpj": "37.751.417/0001-04",
+      "value": 8689.74
+    }
   ]
 
 }

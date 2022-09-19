@@ -1,0 +1,14 @@
+// Vitest Snapshot v1
+
+exports[`BaseModal > should render component and match snapshot 1`] = `
+"<teleport-stub>
+  <div class=\\"modal fixed top-0 left-0 z-50 flex items-center justify-center w-full h-full bg-black bg-opacity-50\\" style=\\"display: none;\\">
+    <div class=\\"modal-body overflow-hidden bg-white rounded-lg fixed animate__animated animate__fadeInDown animate__faster\\">
+      <div class=\\"flex justify-between p-4 border-b\\">
+        <h1>Title component</h1><button class=\\"text-xl text-gray-600 focus:outline-none\\">×</button>
+      </div>
+      <div class=\\"p-4 gap-2\\"></div>
+    </div>
+  </div>
+</teleport-stub>"
+`;

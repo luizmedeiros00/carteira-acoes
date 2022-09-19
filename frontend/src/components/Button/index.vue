@@ -1,23 +1,5 @@
 <template>
-  <router-link
-    v-if="to"
-    :to="!disabled ? to : null"
-    :class="classes"
-    :aria-disabled="disabled.toString()"
-  >
-    <span v-if="srText" class="sr-only">{{ srText }}</span>
-    <slot :iconSizeClasses="iconSizeClasses" />
-  </router-link>
-  <a
-    v-else-if="href"
-    :href="!disabled ? href : null"
-    :class="classes"
-    :aria-disabled="disabled.toString()"
-  >
-    <span v-if="srText" class="sr-only">{{ srText }}</span>
-    <slot :iconSizeClasses="iconSizeClasses" />
-  </a>
-  <button v-else :type="type" :class="classes" @click="handleClick" :disabled="disabled || loading">
+  <button :type="type" :class="classes" @click="handleClick" :disabled="disabled || loading">
     <span v-if="srText" class="sr-only">{{ srText }}</span>
 
     <template v-if="loading">
@@ -76,12 +58,6 @@
       type: Boolean,
       default: false,
     },
-    href: {
-      type: String,
-    },
-    to: {
-      type: [String, Object],
-    },
     disabled: {
       type: Boolean,
       default: false,
@@ -96,8 +72,8 @@
     },
     loading: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   })
 
   const emit = defineEmits(['click'])

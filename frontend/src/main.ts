@@ -9,19 +9,20 @@ import './assets/css/tailwind.css'
 import '../src/assets/css/fonts.css'
 import 'animate.css'
 
-// import AxiosAdapter from './services/AxiosAdapter';
 import VariableIncomeHttpService from './services/VariableIncomeHttpService'
 import FixedIncomeHttpService from './services/FixedIncomeHttpService'
+import InvestmentFundsHttpService from './services/InvestmentFundsHttpService'
 
-// const httpClient = new AxiosAdapter()
 const VariableIncomeService = new VariableIncomeHttpService('variable-income')
 const FixedIncomeService = new FixedIncomeHttpService('fixed-incomes')
+const InvestmentFundsService = new InvestmentFundsHttpService('investment-funds')
 
 const app = createApp(App)
 app.component(VueFeather.name, VueFeather)
 app.use(router)
 app.provide('VariableIncomeService', VariableIncomeService)
 app.provide('FixedIncomeService', FixedIncomeService)
+app.provide('InvestmentFundsService', InvestmentFundsService)
 
 app.use(
   plugin,

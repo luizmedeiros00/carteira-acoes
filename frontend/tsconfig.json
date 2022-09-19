@@ -15,11 +15,11 @@
     "lib": ["esnext", "dom",
       "dom.iterable",
       "scripthost"],
-    "types": ["vite/client"],
+    "types": ["vite/client", "vitest/globals"],
     "plugins": [{ "name": "@vuedx/typescript-plugin-vue" }],
     "allowJs": true
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "src/interfaces/StockClass.js"],
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "test"],
   "exclude": [
     "node_modules"
   ]
