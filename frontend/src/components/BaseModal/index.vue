@@ -14,13 +14,14 @@
         }"
         @click.stop
       >
-        <div class="flex justify-between p-4 border-b">
+        <slot name="header"></slot>
+        <!-- <div v-if="title" class="flex justify-between p-4 border-b">
           <h1>{{ title }}</h1>
           <button class="text-xl text-gray-600 focus:outline-none" @click="close">&times;</button>
-        </div>
-        <div class="p-4 gap-2">
-          <slot></slot>
-        </div>
+        </div> -->
+        <slot></slot>
+        <!-- <div class="p-4 gap-2">
+        </div> -->
       </div>
     </div>
   </teleport>
@@ -31,27 +32,21 @@
   const emit = defineEmits(['close'])
 
   interface Props {
-    title: string
     persistent?: boolean
     size?: 'md' | 'sm' | 'lg'
   }
-  const { title, size = 'md', persistent = false } = defineProps<Props>()
+  const { size = 'md', persistent = false } = defineProps<Props>()
   const active = ref<boolean>(false)
-  const open = () => (active.value = true)
-  const close = () => {
-    active.value = false
-    emit('close')
-  }
+  const toggle = (value: boolean) => (active.value = value)
 
   function clickOutSideModal() {
     if (persistent) return
     emit('close')
-    active.value = false
+    toggle(false)
   }
 
   defineExpose({
-    open,
-    close,
+    toggle,
   })
 </script>
 <style scoped></style>
