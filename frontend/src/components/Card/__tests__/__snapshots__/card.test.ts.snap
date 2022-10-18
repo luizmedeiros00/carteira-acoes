@@ -1,0 +1,13 @@
+// Vitest Snapshot v1
+
+exports[`Card component > should render component with props title and snapshot 1`] = `
+"<div class=\\"block p-3 bg-white rounded-lg border border-gray-200 w-full shadow-md\\">
+  <h2 class=\\"text-base font-medium text-slate-500 mb-5\\">Title Card</h2>
+</div>"
+`;
+
+exports[`Card component > should render component without props title and snapshot 1`] = `
+"<div class=\\"block p-3 bg-white rounded-lg border border-gray-200 w-full shadow-md\\">
+  <!--v-if-->
+</div>"
+`;
