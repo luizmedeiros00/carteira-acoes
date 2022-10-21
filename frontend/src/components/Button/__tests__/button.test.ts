@@ -1,15 +1,15 @@
 import Button from '../index.vue'
 
-import { shallowMount, } from '@vue/test-utils'
+import { mount, shallowMount, } from '@vue/test-utils'
 
 describe('Button Component', () => {
 
-  test('should render component and match snapshot', () => {
+  test.skip('should render component and match snapshot', () => {
     const wrapper = shallowMount(Button)
     expect(wrapper.html()).toMatchSnapshot()
   })
 
-  test('should render component with slot', () => {
+  test.skip('should render component with slot', () => {
     const wrapper = shallowMount(Button, {
       slots: {
         default: 'Button Name'
@@ -18,7 +18,7 @@ describe('Button Component', () => {
     expect(wrapper.html()).toContain('Button Name')
   })
 
-  test('should render component with loader and Aguarde name', async () => {
+  test.skip('should render component with loader and Aguarde name', async () => {
     const wrapper = shallowMount(Button, {
       slots: {
         default: 'Button Name'
@@ -31,7 +31,7 @@ describe('Button Component', () => {
     expect(wrapper.html()).toContain('Aguarde...')
   })
 
-  test('should have rounded-full class when props pill is set to true', () => {
+  test.skip('should have rounded-full class when props pill is set to true', () => {
     const wrapper = shallowMount(Button, {
       props: {
         pill: true
@@ -41,15 +41,17 @@ describe('Button Component', () => {
     expect(wrapper.html()).toMatchSnapshot()
   })
 
-  // test('should emit event when click', async () => {
-  //   const wrapper = shallowMount(Button)
-  //   const button = wrapper.find('button')
-  //   await button.trigger('click')
-  //   await wrapper.vm.$forceUpdate();
+  test('should emit event when click', async () => {
+    const wrapper = shallowMount(Button, {
+      props: {
+        loading: false,
+        disabled: false
+      }
+    })
 
-    
-  //   const emitted = wrapper.emitted('click');
-
-  //   expect(emitted).toHaveLength(1);
-  // })
+    await wrapper.find('button').trigger('click')
+    // await wrapper.vm.$nextTick();
+    // console.log(wrapper.emitted('click'), 'aqio')
+   expect(wrapper.emitted('click')).toHaveLength(1)
+  })
 })

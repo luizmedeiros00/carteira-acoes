@@ -129,7 +129,7 @@
     },
   ]
 
-  const handleClick = (e) => {
+  function handleClick(e) {
     if (disabled.value) {
       e.preventDefault()
       e.stopPropagation()
@@ -137,4 +137,13 @@
     }
     emit('click', e)
   }
+
+  // const handleClick = (e) => {
+  //   if (disabled.value) {
+  //     e.preventDefault()
+  //     e.stopPropagation()
+  //     return
+  //   }
+  //   emit('click', e)
+  // }
 </script>
