@@ -5,7 +5,7 @@
         <h2 class="text-xl font-semibold leading-tight">Resumo da Carteira</h2>
       </div>
     </div>
-    <ButtonComponent title="My button" />
+
     <div class="flex">
       <div class="flex flex-col gap-2 px-4 basis-1/2">
         <Card title="Classes">
@@ -73,7 +73,12 @@
   import Card from '@/components/Card/index.vue'
   import CardStockComponent from './CardStockComponent.vue'
   import CardProductComponentVue from './CardProductComponent.vue'
-  import ButtonComponent from '../../components/Button/Button'
+  import ButtonComponent from '../../components/Button'
+
+  function teste(){
+    console.log('aqui')
+    alert('aqui 2')
+  }
 
   const institutions: StocksClass[] = [
     {
